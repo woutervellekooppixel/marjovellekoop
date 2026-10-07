@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Bezoekcijfers | Praktijk Marjo Vellekoop</title>
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg: #f7f5f0; --surface: #ffffff; --ink: #2e332c; --muted: #636a60; --line: #e5e1d7; --accent: #5c7c4f; --prev: #a8aea4; --track: #eef2e8;
+      --radius: 12px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 15px/1.55 "Raleway", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header { background: var(--surface); border-bottom: 1px solid var(--line); }
+    header .wrap { display: flex; align-items: center; gap: 16px; min-height: 72px; flex-wrap: wrap; padding-block: 10px; }
+    header img { height: 44px; width: auto; display: block; }
+    header .back { margin-left: auto; font-size: 14px; }
+    .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 36px 0 20px; }
+    h1 { font-size: 28px; font-weight: 600; margin: 0; line-height: 1.2; }
+    .lede { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
+    .live { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); }
+    .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+    .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+    .seg button { font: inherit; font-size: 13px; border: 0; background: none; color: var(--muted); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+    .tiles { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tiles .tile:last-child { grid-column: span 2; } }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+    .tile .label { font-size: 13px; color: var(--muted); }
+    .tile .value { font-size: 28px; font-weight: 600; font-variant-numeric: tabular-nums; margin: 4px 0 2px; letter-spacing: -.01em; }
+    .tile .delta { font-size: 12px; color: var(--muted); }
+    .tile .delta b { font-weight: 600; color: var(--ink); }
+    .chart-card { margin-top: 12px; }
+    .chart-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    h2 { font-size: 16px; font-weight: 600; margin: 0; }
+    .legend { display: flex; gap: 16px; font-size: 12px; color: var(--muted); }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend .sw { width: 16px; height: 0; border-top: 2px solid var(--accent); }
+    .legend .sw.prev { border-top: 2px dashed var(--prev); }
+    .chart { position: relative; margin-top: 14px; }
+    .chart svg { display: block; overflow: visible; }
+    .chart .grid line { stroke: var(--line); }
+    .chart .axis text { fill: var(--muted); font-size: 11px; }
+    .tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--surface); font-size: 12px; padding: 7px 10px; border-radius: 8px; white-space: nowrap; transform: translate(-50%, -100%); opacity: 0; transition: opacity .1s; }
+    .tip b { font-weight: 600; }
+    .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
+    @media (max-width: 900px) { .grid2, .grid3 { grid-template-columns: 1fr; } }
+    .sub { font-size: 12px; color: var(--muted); margin: 2px 0 12px; }
+    .bars { list-style: none; margin: 0; padding: 0; }
+    .bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; padding: 7px 0; font-size: 14px; }
+    .bars .n { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bars .v { font-variant-numeric: tabular-nums; color: var(--ink); font-weight: 600; }
+    .bars .v small { font-weight: 400; color: var(--muted); }
+    .bars .track { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: var(--track); }
+    .bars .fill { height: 100%; border-radius: 3px; background: var(--accent); min-width: 2px; }
+    .empty { color: var(--muted); font-size: 14px; padding: 8px 0; }
+    details { margin-top: 12px; font-size: 13px; }
+    details summary { color: var(--muted); cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-variant-numeric: tabular-nums; }
+    th, td { text-align: right; padding: 4px 8px; border-bottom: 1px solid var(--line); }
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--muted); font-weight: 600; }
+    .msg { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; color: var(--muted); }
+    footer { color: var(--muted); font-size: 12px; padding: 28px 0 40px; }
+    .loading .tiles, .loading .chart-card, .loading .grid2, .loading .grid3 { opacity: .45; transition: opacity .2s; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a href="/"><img src="/assets/img/logo.png" alt="Praktijk Marjo Vellekoop"></a>
+      <a class="back" href="/">← Terug naar de website</a>
+    </div>
+  </header>
+
+  <main class="wrap" id="app">
+    <div class="top">
+      <div>
+        <h1>Bezoekcijfers</h1>
+        <p class="lede"><span id="period"></span> <span class="live" id="live" hidden><i></i><span></span></span></p>
+      </div>
+      <div class="seg" role="group" aria-label="Periode">
+        <button data-d="7">7 dagen</button>
+        <button data-d="28">28 dagen</button>
+        <button data-d="90">90 dagen</button>
+      </div>
+    </div>
+    <div id="body"><div class="msg">Cijfers laden…</div></div>
+  </main>
+
+  <div class="wrap"><footer id="foot">Bron: Google Analytics.</footer></div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const nf = n => Math.round(n).toLocaleString('nl-NL');
+  const pct = n => `${Math.round(n * 100)}%`;
+  const dur = s => { s = Math.round(s); const m = Math.floor(s / 60); return m ? `${m}m ${String(s % 60).padStart(2, '0')}s` : `${s}s`; };
+  const day = (d, opts) => new Date(d + 'T12:00').toLocaleDateString('nl-NL', opts || { day: 'numeric', month: 'short' });
+
+  const CHANNELS = { 'Direct': 'Direct (adres getypt of bladwijzer)', 'Organic Search': 'Zoekmachines (Google e.d.)', 'Referral': 'Links op andere websites',
+    'Organic Social': 'Sociale media', 'Paid Search': 'Betaalde zoekadvertenties', 'Paid Social': 'Betaalde social-advertenties', 'Email': 'E-mail',
+    'Unassigned': 'Onbekend', 'Organic Video': 'Video', 'Display': 'Banners', 'Cross-network': 'Advertenties (gemengd)' };
+  const DEVICES = { desktop: 'Computer', mobile: 'Mobiel', tablet: 'Tablet', 'smart tv': 'Smart-tv' };
+  const SOURCES = { '(direct)': 'Direct', google: 'Google', bing: 'Bing', 'duckduckgo': 'DuckDuckGo', 'l.facebook.com': 'Facebook', 'm.facebook.com': 'Facebook',
+    'facebook.com': 'Facebook', 'lm.facebook.com': 'Facebook', 'instagram.com': 'Instagram', 'l.instagram.com': 'Instagram', 'linkedin.com': 'LinkedIn', 'lnkd.in': 'LinkedIn', '(not set)': 'Onbekend' };
+
+  const CITIES = { 'The Hague': 'Den Haag', 'Amsterdam': 'Amsterdam', 'Rotterdam': 'Rotterdam', 'Utrecht': 'Utrecht', 'Hague': 'Den Haag',
+    "'s-Gravenzande": "'s-Gravenzande", 'Naaldwijk': 'Naaldwijk', 'Westland': 'Westland', 'Leiden': 'Leiden', 'Delft': 'Delft', 'Zoetermeer': 'Zoetermeer',
+    'Rijswijk': 'Rijswijk', 'Voorburg': 'Voorburg', 'Wassenaar': 'Wassenaar', 'Brussels': 'Brussel', 'Antwerp': 'Antwerpen', 'Ghent': 'Gent', 'Hamburg': 'Hamburg', 'Cologne': 'Keulen' };
+  const PAGES = { '/': 'Homepagina', '/en/': 'Homepagina (Engels)' };
+
+  let days = Number(new URLSearchParams(location.search).get('dagen')) || 28;
+  if (![7, 28, 90].includes(days)) days = 28;
+  const cache = {};
+
+  function delta(cur, prev, invert) {
+    if (!prev) return cur ? 'nieuw ten opzichte van de vorige periode' : 'geen verschil';
+    const p = Math.round(((cur - prev) / prev) * 100);
+    if (!p) return 'gelijk aan de vorige periode';
+    return `<b>${p > 0 ? '▲' : '▼'} ${Math.abs(p)}%</b> t.o.v. vorige ${days} dagen`;
+  }
+
+  function tile(label, cur, prev, fmt) {
+    return `<div class="card tile"><div class="label">${label}</div><div class="value">${fmt(cur)}</div><div class="delta">${delta(cur, prev)}</div></div>`;
+  }
+
+  function bars(items, { map = {}, unit = '', total, extra } = {}) {
+    if (!items.length) return '<div class="empty">Nog geen gegevens in deze periode.</div>';
+    const max = Math.max(...items.map(i => i.value));
+    const sum = total || items.reduce((n, i) => n + i.value, 0);
+    return `<ul class="bars">${items.map(i => `<li title="${esc(map[i.name] || i.name)}: ${nf(i.value)}${unit}">
+      <span class="n">${esc(map[i.name] || i.name)}</span>
+      <span class="v">${nf(i.value)}${extra ? ` <small>${extra(i)}</small>` : ` <small>${Math.round((i.value / sum) * 100)}%</small>`}</span>
+      <span class="track"><span class="fill" style="display:block;width:${(i.value / max) * 100}%"></span></span></li>`).join('')}</ul>`;
+  }
+
+  // Bezoekers per dag: deze periode als lijn met vlak, de vorige periode gestippeld eronder
+  function chart(cur, prev, W) {
+    const H = 240, P = { t: 12, r: 8, b: 26, l: 36 };
+    const max = Math.max(4, ...cur.map(d => d.users), ...prev.map(d => d.users));
+    const step = Math.pow(10, Math.floor(Math.log10(max))) / (max / Math.pow(10, Math.floor(Math.log10(max))) > 5 ? 0.5 : 1);
+    const top = Math.ceil(max / step) * step;
+    const x = i => P.l + (i / Math.max(1, cur.length - 1)) * (W - P.l - P.r);
+    const y = v => P.t + (1 - v / top) * (H - P.t - P.b);
+    const line = arr => arr.map((d, i) => `${i ? 'L' : 'M'}${x(i).toFixed(1)},${y(d.users).toFixed(1)}`).join('');
+    const ticks = []; for (let v = 0; v <= top; v += step) ticks.push(v);
+    const every = Math.ceil(cur.length / Math.max(2, Math.floor(W / 90)));
+    const xl = cur.map((d, i) => (i % every === 0 || i === cur.length - 1) && (i === cur.length - 1 || cur.length - 1 - i >= every / 2)
+      ? `<text x="${x(i)}" y="${H - 6}" text-anchor="middle">${day(d.date)}</text>` : '').join('');
+    return `<svg data-top="${top}" data-w="${W}" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Bezoekers per dag">
+      <g class="grid">${ticks.map(v => `<line x1="${P.l}" x2="${W - P.r}" y1="${y(v)}" y2="${y(v)}" vector-effect="non-scaling-stroke"/>`).join('')}</g>
+      <g class="axis">${ticks.map(v => `<text x="${P.l - 8}" y="${y(v) + 4}" text-anchor="end">${nf(v)}</text>`).join('')}${xl}</g>
+      <path d="${line(prev)}" fill="none" stroke="var(--prev)" stroke-width="2" stroke-dasharray="4 4" vector-effect="non-scaling-stroke"/>
+      <path d="${line(cur)}L${x(cur.length - 1)},${y(0)}L${x(0)},${y(0)}Z" fill="var(--accent)" opacity=".12"/>
+      <path d="${line(cur)}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+      <line class="xh" y1="${P.t}" y2="${H - P.b}" stroke="var(--muted)" stroke-width="1" vector-effect="non-scaling-stroke" opacity="0"/>
+      <circle class="dot" r="4" fill="var(--accent)" stroke="var(--surface)" stroke-width="2" opacity="0" vector-effect="non-scaling-stroke"/>
+      <rect x="${P.l}" y="0" width="${W - P.l - P.r}" height="${H}" fill="transparent" class="hit"/>
+    </svg><div class="tip"></div>`;
+  }
+
+  function wireChart(el, cur, prev) {
+    const svg = el.querySelector('svg'), tip = el.querySelector('.tip'), xh = el.querySelector('.xh'), dot = el.querySelector('.dot');
+    const W = Number(svg.dataset.w), H = 240, P = { t: 12, r: 8, b: 26, l: 36 };
+    const top = Number(svg.dataset.top);
+    const move = e => {
+      const r = svg.getBoundingClientRect();
+      const fx = ((e.clientX - r.left) / r.width) * W;
+      const i = Math.max(0, Math.min(cur.length - 1, Math.round(((fx - P.l) / (W - P.l - P.r)) * (cur.length - 1))));
+      const X = P.l + (i / Math.max(1, cur.length - 1)) * (W - P.l - P.r);
+      const Y = P.t + (1 - cur[i].users / top) * (H - P.t - P.b);
+      xh.setAttribute('x1', X); xh.setAttribute('x2', X); xh.setAttribute('opacity', 1);
+      dot.setAttribute('cx', X); dot.setAttribute('cy', Y); dot.setAttribute('opacity', 1);
+      tip.innerHTML = `<b>${day(cur[i].date, { weekday: 'short', day: 'numeric', month: 'short' })}</b> · ${nf(cur[i].users)} bezoekers · ${nf(cur[i].views)} weergaven<br><span style="opacity:.7">${day(prev[i].date)}: ${nf(prev[i].users)} bezoekers</span>`;
+      tip.style.left = `${X}px`; tip.style.top = `${Y - 10}px`; tip.style.opacity = 1;
+    };
+    const out = () => { tip.style.opacity = 0; xh.setAttribute('opacity', 0); dot.setAttribute('opacity', 0); };
+    svg.addEventListener('pointermove', move);
+    svg.addEventListener('pointerleave', out);
+  }
+
+  let current = null;
+  function drawChart(d) {
+    const el = $('#chart');
+    if (!el) return;
+    el.innerHTML = chart(d.daily, d.dailyPrevious, Math.max(280, el.clientWidth));
+    wireChart(el, d.daily, d.dailyPrevious);
+  }
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => current && drawChart(current), 120); });
+
+  function render(d) {
+    current = d;
+    const c = d.current, p = d.previous;
+    $('#period').textContent = `${day(d.daily[0].date, { day: 'numeric', month: 'long' })} t/m ${day(d.daily.at(-1).date, { day: 'numeric', month: 'long' })}`;
+    const live = $('#live');
+    live.hidden = !d.now;
+    live.querySelector('span').textContent = `${d.now} ${d.now === 1 ? 'bezoeker' : 'bezoekers'} nu op de site`;
+    const dev = d.devices.reduce((n, x) => n + x.value, 0);
+    $('#body').innerHTML = `
+      <div class="tiles">
+        ${tile('Bezoekers', c.activeUsers, p.activeUsers, nf)}
+        ${tile('Nieuwe bezoekers', c.newUsers, p.newUsers, nf)}
+        ${tile('Bezoeken', c.sessions, p.sessions, nf)}
+        ${tile('Bekeken pagina’s', c.screenPageViews, p.screenPageViews, nf)}
+        ${tile('Gem. duur per bezoek', c.averageSessionDuration, p.averageSessionDuration, dur)}
+      </div>
+      <div class="card chart-card">
+        <div class="chart-head"><h2>Bezoekers per dag</h2>
+          <div class="legend"><span><i class="sw"></i>Laatste ${days} dagen</span><span><i class="sw prev"></i>${days} dagen daarvoor</span></div></div>
+        <div class="chart" id="chart"></div>
+        <details><summary>Toon als tabel</summary><table><thead><tr><th>Datum</th><th>Bezoekers</th><th>Weergaven</th></tr></thead><tbody>
+          ${d.daily.slice().reverse().map(x => `<tr><td>${day(x.date, { weekday: 'short', day: 'numeric', month: 'short' })}</td><td>${nf(x.users)}</td><td>${nf(x.views)}</td></tr>`).join('')}</tbody></table></details>
+      </div>
+      <div class="grid2">
+        <div class="card"><h2>Meest bekeken pagina’s</h2><p class="sub">Weergaven, met het aantal bezoekers erachter</p>
+          ${bars(d.pages, { map: PAGES, extra: i => `${nf(i.users)} bez.` })}</div>
+        <div class="card"><h2>Hoe komen bezoekers binnen</h2><p class="sub">Aandeel van alle bezoeken</p>
+          ${bars(d.channels, { map: CHANNELS })}</div>
+      </div>
+      <div class="grid3">
+        <div class="card"><h2>Bronnen</h2><p class="sub">Websites en zoekmachines waar bezoeken vandaan komen</p>${bars(d.sources, { map: SOURCES })}</div>
+        <div class="card"><h2>Apparaten</h2><p class="sub">Waarop de site bekeken wordt</p>${bars(d.devices, { map: DEVICES, total: dev })}</div>
+        <div class="card"><h2>Plaatsen</h2><p class="sub">Waar bezoekers ongeveer zitten</p>${bars(d.cities, { map: CITIES })}</div>
+      </div>`;
+    drawChart(d);
+    $('#foot').textContent = `Bron: Google Analytics · bijgewerkt ${new Date(d.updated).toLocaleString('nl-NL', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })} · cijfers van vandaag lopen een paar uur achter.`;
+  }
+
+  async function load(d) {
+    days = d;
+    document.querySelectorAll('.seg button').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.d) === days)));
+    history.replaceState(null, '', days === 28 ? location.pathname : `?dagen=${days}`);
+    $('#app').classList.add('loading');
+    try {
+      cache[days] ||= await fetch(`/api/analytics?dagen=${days}`).then(async r => { const j = await r.json(); if (!r.ok) throw new Error(j.error); return j; });
+      if (d === days) render(cache[days]);
+    } catch (e) {
+      delete cache[days];
+      $('#body').innerHTML = `<div class="msg">De cijfers kunnen nu niet worden geladen. ${esc(e.message)}</div>`;
+    } finally {
+      $('#app').classList.remove('loading');
+    }
+  }
+
+  document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => load(Number(b.dataset.d))));
+  load(days);
+})();
+</script>
+</body>
+</html>
