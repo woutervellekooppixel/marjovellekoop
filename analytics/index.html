@@ -26,6 +26,7 @@
     h1 { font-size: 28px; font-weight: 600; margin: 0; line-height: 1.2; }
     .lede { color: var(--muted); margin: 6px 0 0; font-size: 14px; }
     .live { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted); }
+    .live[hidden] { display: none; }
     .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: pulse 2s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 50%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
     .seg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
